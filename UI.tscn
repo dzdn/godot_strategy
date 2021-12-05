@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Font/roboto_regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/roboto_bold.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/SolarPanel.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Greenhouse.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Mine.png" type="Texture" id=5]
+[ext_resource path="res://UI.gd" type="Script" id=6]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 576.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,6 +28,9 @@ margin_right = 1246.0
 margin_bottom = 109.0
 custom_fonts/font = ExtResource( 2 )
 text = "End Turn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TurnText" type="Label" parent="."]
 margin_left = 878.0
@@ -104,3 +109,8 @@ custom_colors/font_color = Color( 0.796078, 0.721569, 0.113725, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "25 (+80)
 25 (+80)"
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_EndTurnButton_pressed"]
+[connection signal="pressed" from="BuildingButtons/MineButton" to="." method="_on_MineButton_pressed"]
+[connection signal="pressed" from="BuildingButtons/GreenhouseButton" to="." method="_on_GreenhouseButton_pressed"]
+[connection signal="pressed" from="BuildingButtons/SolarPanelButton" to="." method="_on_SolarPanelButton_pressed"]

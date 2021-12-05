@@ -11,7 +11,13 @@ var tileSize : float = 64.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# when we're initialized, get all of the tiles
+	allTiles = get_tree().get_nodes_in_group("Tiles")
+	
+	# find the start tile and place the base building
+	for x in range(allTiles.size()):
+		if allTiles[x].startTile == true:
+			place_building(allTiles[x], BuildingData.base.iconTexture)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,3 +58,10 @@ func highlight_available_tiles():
 			eastTile.toggle_highlight(true)	
 		if westTile != null:
 			westTile.toggle_highlight(true)	
+
+# places down a building on the map
+func place_building(tile, texture):
+	tilesWithBuildings.append(tile)
+	tile.place_building(texture)
+	
+	disable_tile_highlights()
